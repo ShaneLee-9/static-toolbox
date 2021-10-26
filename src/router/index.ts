@@ -8,7 +8,7 @@ export const navRoutes: RouteRecordRaw[] = [
     component: Tea,
     meta: {
       icon: 'emoji_food_beverage',
-      title: 'test'
+      title: '茶'
     }
   }
 ]
