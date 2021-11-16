@@ -10,6 +10,15 @@ export const navRoutes: RouteRecordRaw[] = [
       icon: 'emoji_food_beverage',
       title: '茶'
     }
+  },
+  {
+    path: '/color',
+    name: 'Color',
+    component: () => import('@/views/color/index.vue'),
+    meta: {
+      icon: 'invert_colors',
+      title: '颜色'
+    }
   }
 ]
 

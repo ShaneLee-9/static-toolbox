@@ -25,6 +25,7 @@ const emits = defineEmits<Emits>()
         v-for="item of navRoutes"
         :key="item.path"
         :to="item.path"
+        class="text-grey"
         clickable
       >
         <q-item-section avatar>
@@ -37,3 +38,9 @@ const emits = defineEmits<Emits>()
     </q-list>
   </q-drawer>
 </template>
+
+<style scoped>
+.q-item.q-router-link--active {
+  color: var(--q-primary) !important;
+}
+</style>
