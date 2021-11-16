@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Filter, Luminosity } from './typing'
+import { copy } from '@/utils/helper'
 import BaseFab from '@/components/BaseFab.vue'
 import useColor from '@/views/color/useColor'
 
@@ -35,7 +36,7 @@ setColor()
             </q-responsive>
           </q-card-section>
           <q-card-section class="text-center">
-            <q-btn push>复制颜色</q-btn>
+            <q-btn push @click="copy(colorResult)">复制颜色</q-btn>
           </q-card-section>
         </q-card>
       </div>
