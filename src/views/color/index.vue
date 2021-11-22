@@ -10,21 +10,48 @@ const filterList = ref<Filter[]>([
   { val: Luminosity.LIGHT, label: '亮色' },
   { val: Luminosity.DARK, label: '暗色' }
 ])
-const [colorResult, setColor] = useColor(luminosity)
+const hueList = [
+  { val: 'all', label: '不限' },
+  { val: 'red', label: '红色' },
+  { val: 'orange', label: '橙色' },
+  { val: 'yellow', label: '黄色' },
+  { val: 'green', label: '绿色' },
+  { val: 'blue', label: '蓝色' },
+  { val: 'purple', label: '紫色' },
+  { val: 'pink', label: '粉色' },
+  { val: 'monochrome', label: '黑白灰' }
+]
+const hueValue = ref(hueList[0])
+const [colorResult, setColor] = useColor({ luminosity, hue: hueValue })
 setColor()
 </script>
 
 <template>
   <div class="q-pl-lg q-pr-lg">
-    <div class="q-gutter-sm">
-      <q-radio
-        v-for="item of filterList"
-        :key="item.val"
-        v-model="luminosity"
-        :val="item.val"
-        :label="item.label"
-        @update:model-value="setColor"
-      />
+    <div class="filter-item">
+      <span class="filter-item__label">亮度</span>
+      <div class="filter-item__content q-gutter-sm">
+        <q-radio
+          v-for="item of filterList"
+          :key="item.val"
+          v-model="luminosity"
+          :val="item.val"
+          :label="item.label"
+          @update:model-value="setColor"
+        />
+      </div>
+    </div>
+    <div class="filter-item">
+      <span class="filter-item__label">色相</span>
+      <div class="filter-item__content q-gutter-sm">
+        <q-select
+          v-model="hueValue"
+          :options="hueList"
+          dense
+          borderless
+          @update:model-value="setColor"
+        />
+      </div>
     </div>
 
     <div class="row q-mt-md">
@@ -45,3 +72,13 @@ setColor()
 
   <base-fab @click="setColor" />
 </template>
+
+<style scoped lang="sass">
+.filter-item
+  display: flex
+  align-items: center
+
+  &__label
+    flex-shrink: 0
+    width: 3em
+</style>
